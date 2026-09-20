@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>The Daily Void</title>
+  <link rel="stylesheet" href="styles.css?v=1789902898">
+  <link rel="stylesheet" href="calendar.css?v=1789906253">
+  <link rel="stylesheet" href="maloja-week.css?v=1789909145">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="stars"></div>
+  <header class="hero">
+    <div class="eclipse" aria-hidden="true"></div>
+    <h1>THE DAILY VOID</h1>
+    <p>news, death, code, weather, and other temporary disturbances.</p>
+    <form id="searchForm" class="search" autocomplete="off">
+      <span>⌕</span>
+      <input id="searchInput" placeholder="Search the web or your universe…">
+      <kbd>Ctrl K</kbd>
+    </form>
+    <div id="searchHints" class="search-hints"></div>
+  </header>
+
+  
+  <section id="dailyBrief" class="daily-brief">
+    <div class="daily-brief-label">DAILY BRIEF</div>
+    <div class="daily-brief-items">
+      <span class="daily-brief-item">
+        Gathering disturbances…
+      </span>
+    </div>
+  </section>
+
+<main id="dashboard" class="dashboard" aria-live="polite"></main>
+
+  
+<!-- DAILY_VOID_MALOJA_WEEK_V1 -->
+<section
+  id="malojaWeek"
+  class="maloja-week"
+  aria-label="Music this week"
+>
+  <div class="maloja-loading">
+    Listening for temporary disturbances…
+  </div>
+</section>
+
+<footer class="footer">
+    <div><span id="dateText"></span> · <span id="timeText"></span></div>
+    <button id="quote" class="quote" type="button">All things are temporary. Even this dashboard.</button>
+    <div class="footer-actions">
+      <button id="compactBtn" type="button">Compact</button>
+      <button id="refreshBtn" type="button">Refresh</button>
+    </div>
+  </footer>
+<div id="toast" class="toast" role="status"></div>
+  <script src="app.js?v=1789909145" defer></script>
+</body>
+</html>

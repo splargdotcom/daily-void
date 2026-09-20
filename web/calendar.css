@@ -1,0 +1,553 @@
+/* DAILY_VOID_PRIVATE_CALENDAR_V1 */
+
+.calendar-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.calendar-section + .calendar-section {
+  padding-top: 11px;
+  border-top: 1px solid rgba(220,235,255,.07);
+}
+
+.calendar-section-title {
+  margin-bottom: 6px;
+  color: var(--muted, #969faf);
+  font-size: .64rem;
+  font-weight: 800;
+  letter-spacing: .13em;
+}
+
+.calendar-row {
+  display: grid;
+  grid-template-columns: 76px minmax(0,1fr);
+  gap: 10px;
+  align-items: baseline;
+  min-height: 27px;
+}
+
+.calendar-when {
+  color: var(--muted, #99a2b3);
+  font-size: .68rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.calendar-title {
+  min-width: 0;
+  overflow: hidden;
+  font-size: .82rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.calendar-empty,
+.calendar-loading {
+  padding: 5px 0;
+  color: var(--muted, #9099aa);
+  font-size: .78rem;
+}
+
+.calendar-open {
+  color: inherit;
+  font-size: .74rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.calendar-open:hover {
+  text-decoration: underline;
+}
+
+body.compact .calendar-row {
+  min-height: 22px;
+}
+
+@media (max-width: 700px) {
+  .calendar-row {
+    grid-template-columns: 70px minmax(0,1fr);
+  }
+}
+
+.calendar-more {
+  margin-top: 2px;
+  color: var(--muted, #969faf);
+  font-size: .7rem;
+  font-weight: 700;
+  text-align: right;
+}
+
+
+/* ============================================================
+   DAILY_VOID_LIFE_ADMIN_V1
+   ============================================================ */
+
+.life-admin-widget {
+  display: flex;
+  flex-direction: column;
+}
+
+.life-admin-row {
+  display: grid;
+  grid-template-columns:
+    22px
+    minmax(0, 1fr)
+    auto;
+
+  gap: 8px;
+
+  align-items: center;
+
+  min-height: 39px;
+
+  border-bottom:
+    1px solid rgba(220,235,255,.06);
+}
+
+.life-admin-row:last-child {
+  border-bottom: 0;
+}
+
+.life-admin-icon {
+  color:
+    var(--muted, #9da6b6);
+
+  font-size: .82rem;
+  font-weight: 800;
+
+  text-align: center;
+}
+
+.life-admin-main {
+  min-width: 0;
+}
+
+.life-admin-merchant {
+  overflow: hidden;
+
+  font-size: .8rem;
+  font-weight: 650;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.life-admin-detail {
+  margin-top: 1px;
+
+  color:
+    var(--muted, #9099aa);
+
+  font-size: .66rem;
+}
+
+.life-admin-status {
+  color:
+    var(--muted, #9ca5b5);
+
+  font-size: .62rem;
+  font-weight: 800;
+
+  letter-spacing: .08em;
+}
+
+.life-admin-row[data-status="DUE"]
+.life-admin-status,
+
+.life-admin-row[data-status="EXPIRES"]
+.life-admin-status {
+  color: #e8c88c;
+}
+
+.life-admin-row[data-status="PAID"]
+.life-admin-status,
+
+.life-admin-row[data-status="REFUNDED"]
+.life-admin-status {
+  color: #9fd5b0;
+}
+
+.life-admin-more {
+  padding-top: 7px;
+
+  color:
+    var(--muted, #929bab);
+
+  font-size: .68rem;
+
+  text-align: right;
+}
+
+.life-admin-empty {
+  padding: 7px 0;
+
+  color:
+    var(--muted, #929bab);
+
+  font-size: .77rem;
+}
+
+.life-admin-open {
+  color: inherit;
+
+  font-size: .74rem;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+.life-admin-open:hover {
+  text-decoration: underline;
+}
+
+
+/* ============================================================
+   DAILY VOID CALENDAR REDESIGN V2
+   ============================================================ */
+
+.calendar-widget {
+  gap: 10px;
+}
+
+
+/* Each period now feels like a little agenda panel. */
+.calendar-section {
+  padding: 10px 11px;
+
+  border:
+    1px solid rgba(220,235,255,.075);
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.032),
+      rgba(255,255,255,.012)
+    );
+}
+
+
+.calendar-section + .calendar-section {
+  padding-top: 10px;
+
+  border-top:
+    1px solid rgba(220,235,255,.075);
+}
+
+
+/* Section label. */
+.calendar-section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 8px;
+
+  color:
+    rgba(218,225,238,.68);
+
+  font-size: .62rem;
+  font-weight: 800;
+
+  letter-spacing: .14em;
+}
+
+
+.calendar-section-title::after {
+  content: "";
+
+  flex: 1;
+
+  height: 1px;
+
+  background:
+    rgba(220,235,255,.07);
+}
+
+
+/* Event row. */
+.calendar-row {
+  grid-template-columns:
+    70px
+    minmax(0,1fr);
+
+  gap: 9px;
+
+  min-height: 31px;
+
+  padding: 3px 0;
+}
+
+
+/* Time/date becomes a proper chip. */
+.calendar-when {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  min-width: 58px;
+  max-width: 68px;
+
+  padding:
+    4px 7px;
+
+  border:
+    1px solid rgba(220,235,255,.08);
+
+  border-radius: 7px;
+
+  background:
+    rgba(0,0,0,.20);
+
+  color:
+    rgba(207,216,230,.73);
+
+  font-size: .61rem;
+  font-weight: 800;
+
+  letter-spacing: .035em;
+
+  line-height: 1.1;
+
+  text-align: center;
+}
+
+
+/* Event itself is now visually primary. */
+.calendar-title {
+  font-size: .82rem;
+  font-weight: 560;
+
+  line-height: 1.3;
+
+  color:
+    rgba(240,243,248,.94);
+}
+
+
+/* Empty today state. */
+.calendar-empty {
+  padding:
+    5px 2px 3px;
+
+  color:
+    rgba(180,190,205,.56);
+
+  font-size: .75rem;
+
+  font-style: italic;
+}
+
+
+/* "+ 3 more" looks deliberate rather than accidental. */
+.calendar-more {
+  display: inline-flex;
+
+  margin:
+    0 0 1px auto;
+
+  padding:
+    4px 8px;
+
+  border:
+    1px solid rgba(220,235,255,.07);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255,255,255,.025);
+
+  color:
+    rgba(180,190,205,.62);
+
+  font-size: .62rem;
+  font-weight: 700;
+}
+
+
+/* Footer destination. */
+.calendar-open {
+  display: inline-flex;
+  align-items: center;
+
+  width: fit-content;
+
+  padding:
+    6px 9px;
+
+  border:
+    1px solid rgba(220,235,255,.08);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255,255,255,.025);
+
+  color:
+    rgba(215,222,234,.78);
+
+  font-size: .68rem;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+.calendar-open:hover {
+  background:
+    rgba(255,255,255,.065);
+
+  color: #fff;
+
+  text-decoration: none;
+}
+
+
+/* Compact mode should still actually be compact. */
+body.compact .calendar-section {
+  padding: 8px 9px;
+}
+
+body.compact .calendar-row {
+  min-height: 27px;
+}
+
+body.compact .calendar-widget {
+  gap: 7px;
+}
+
+
+/* ============================================================
+   DAILY_VOID_BRIEF_READSTATE_V1
+   ============================================================ */
+
+
+/* ------------------------------------------------------------
+   DAILY BRIEF
+   ------------------------------------------------------------ */
+
+.daily-brief {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin:
+    0 0 16px;
+
+  padding:
+    10px 14px;
+
+  border:
+    1px solid rgba(220,235,255,.10);
+
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,.032),
+      rgba(255,255,255,.014)
+    );
+
+  box-shadow:
+    inset 0 1px 0
+    rgba(255,255,255,.025);
+}
+
+
+.daily-brief-label {
+  flex: 0 0 auto;
+
+  color:
+    rgba(205,214,228,.62);
+
+  font-size: .61rem;
+  font-weight: 850;
+
+  letter-spacing: .15em;
+}
+
+
+.daily-brief-items {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap:
+    6px 0;
+
+  min-width: 0;
+}
+
+
+.daily-brief-item {
+  color:
+    rgba(223,229,239,.83);
+
+  font-size: .72rem;
+
+  white-space: nowrap;
+}
+
+
+.daily-brief-item
++ .daily-brief-item::before {
+  content: "·";
+
+  margin:
+    0 9px;
+
+  color:
+    rgba(180,190,205,.35);
+}
+
+
+@media (max-width: 850px) {
+  .daily-brief {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 6px;
+  }
+
+  .daily-brief-item {
+    white-space: normal;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   READ STATE
+   ------------------------------------------------------------ */
+
+.feed-row,
+.feed-overlay-item {
+  transition:
+    opacity .16s ease;
+}
+
+
+.feed-row.seen,
+.feed-overlay-item.seen {
+  opacity: .43;
+}
+
+
+.feed-row.seen:hover,
+.feed-overlay-item.seen:hover {
+  opacity: .72;
+}
+
+
+.feed-row.seen a,
+.feed-overlay-item.seen a {
+  color:
+    rgba(180,190,204,.72);
+}
+

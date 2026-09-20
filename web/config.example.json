@@ -1,0 +1,115 @@
+{
+  "site": {
+    "title": "THE DAILY VOID",
+    "subtitle": "news, death, code, weather, and other temporary disturbances."
+  },
+
+  "columns": [
+    [
+      "today",
+      "life_admin",
+      "technology",
+      "weather"
+    ],
+    [
+      "news",
+      "swamp",
+      "chaplaincy",
+      "make"
+    ],
+    [
+      "x",
+      "server",
+      "admin"
+    ]
+  ],
+
+  "cards": {
+    "today": {
+      "type": "calendar",
+      "title": "CALENDAR",
+      "limit": 8
+    },
+
+    "life_admin": {
+      "type": "life_admin",
+      "title": "LIFE ADMIN",
+      "gmail_url": "https://mail.google.com/",
+      "limit": 8
+    },
+
+    "technology": {
+      "type": "feed",
+      "title": "TECHNOLOGY"
+    },
+
+    "news": {
+      "type": "feed",
+      "title": "NEWS"
+    },
+
+    "swamp": {
+      "type": "feed",
+      "title": "THE SWAMP"
+    },
+
+    "weather": {
+      "type": "weather",
+      "title": "WEATHER"
+    },
+
+    "x": {
+      "type": "links",
+      "title": "THE MURMURING PIT"
+    },
+
+    "chaplaincy": {
+      "type": "links",
+      "title": "CHAPLAINCY / DEATH NOTICES"
+    },
+
+    "make": {
+      "type": "links",
+      "title": "MAKE",
+      "links": [
+        {
+          "label": "GitHub",
+          "url": "https://github.com/yourname"
+        },
+        {
+          "label": "Maloja",
+          "url": "https://music.example.com/"
+        }
+      ]
+    },
+
+    "server": {
+      "type": "services",
+      "title": "SERVER",
+      "groups": [
+        {
+          "title": "Server 1",
+          "kind": "machine",
+          "primary": "Server 1",
+          "services": []
+        },
+        {
+          "title": "Server 2",
+          "kind": "machine",
+          "primary": "Server 2",
+          "services": []
+        },
+        {
+          "title": "WEB / DEVICES",
+          "kind": "list",
+          "services": []
+        }
+      ]
+    },
+
+    "admin": {
+      "type": "links",
+      "title": "GOOGLE / ADMIN"
+    }
+  }
+}

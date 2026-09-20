@@ -1,0 +1,614 @@
+
+/* ============================================================
+   DAILY_VOID_MALOJA_WEEK_V1
+   ============================================================ */
+
+.maloja-week {
+  margin:
+    18px 0 8px;
+
+  padding:
+    14px;
+
+  border:
+    1px solid
+    rgba(220,235,255,.09);
+
+  border-radius:
+    14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.032),
+      rgba(255,255,255,.012)
+    );
+
+  overflow: hidden;
+}
+
+
+.maloja-week-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom:
+    12px;
+}
+
+
+.maloja-week-heading {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+
+.maloja-week-label {
+  color:
+    rgba(225,232,242,.80);
+
+  font-size:
+    .64rem;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    .15em;
+}
+
+
+.maloja-week-stat {
+  color:
+    rgba(168,179,195,.62);
+
+  font-size:
+    .62rem;
+
+  font-weight:
+    700;
+
+  letter-spacing:
+    .055em;
+}
+
+
+.maloja-open {
+  flex: 0 0 auto;
+
+  color:
+    rgba(214,222,234,.72);
+
+  font-size:
+    .68rem;
+
+  font-weight:
+    700;
+
+  text-decoration:
+    none;
+}
+
+
+.maloja-open:hover {
+  color: #fff;
+
+  text-decoration:
+    underline;
+}
+
+
+.maloja-features {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap:
+    9px;
+}
+
+
+.maloja-feature {
+  display: grid;
+
+  grid-template-columns:
+    58px
+    minmax(0, 1fr);
+
+  align-items: center;
+
+  gap:
+    10px;
+
+  min-width: 0;
+
+  padding:
+    8px;
+
+  border:
+    1px solid
+    rgba(220,235,255,.065);
+
+  border-radius:
+    10px;
+
+  background:
+    rgba(0,0,0,.14);
+
+  color: inherit;
+
+  text-decoration:
+    none;
+
+  transition:
+    background .15s ease,
+    border-color .15s ease;
+}
+
+
+.maloja-feature:hover {
+  background:
+    rgba(255,255,255,.04);
+
+  border-color:
+    rgba(220,235,255,.13);
+}
+
+
+.maloja-feature-art {
+  width:
+    58px;
+
+  height:
+    58px;
+
+  border-radius:
+    8px;
+
+  object-fit:
+    cover;
+
+  background:
+    rgba(255,255,255,.035);
+
+  box-shadow:
+    0 4px 15px
+    rgba(0,0,0,.20);
+}
+
+
+.maloja-art-empty {
+  background:
+    radial-gradient(
+      circle at 35% 30%,
+      rgba(255,255,255,.08),
+      rgba(255,255,255,.015)
+    );
+}
+
+
+.maloja-feature-copy {
+  min-width: 0;
+}
+
+
+.maloja-feature-label {
+  margin-bottom:
+    3px;
+
+  color:
+    rgba(165,176,193,.57);
+
+  font-size:
+    .55rem;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    .12em;
+}
+
+
+.maloja-feature-title {
+  overflow: hidden;
+
+  color:
+    rgba(239,243,248,.94);
+
+  font-size:
+    .78rem;
+
+  font-weight:
+    650;
+
+  line-height:
+    1.25;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+.maloja-feature-meta {
+  overflow: hidden;
+
+  margin-top:
+    3px;
+
+  color:
+    rgba(176,187,202,.62);
+
+  font-size:
+    .62rem;
+
+  line-height:
+    1.25;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+.maloja-album-rail {
+  display: flex;
+
+  gap:
+    7px;
+
+  margin-top:
+    10px;
+
+  overflow-x:
+    auto;
+
+  scrollbar-width:
+    thin;
+}
+
+
+.maloja-cover-link {
+  flex:
+    0 0 auto;
+
+  display: block;
+
+  border-radius:
+    7px;
+
+  opacity:
+    .78;
+
+  transition:
+    opacity .15s ease,
+    transform .15s ease;
+}
+
+
+.maloja-cover-link:hover {
+  opacity: 1;
+
+  transform:
+    translateY(-1px);
+}
+
+
+.maloja-cover {
+  display: block;
+
+  width:
+    45px;
+
+  height:
+    45px;
+
+  border-radius:
+    7px;
+
+  object-fit:
+    cover;
+
+  box-shadow:
+    0 3px 12px
+    rgba(0,0,0,.22);
+}
+
+
+.maloja-loading,
+.maloja-empty {
+  padding:
+    8px 2px;
+
+  color:
+    rgba(174,184,199,.58);
+
+  font-size:
+    .72rem;
+
+  font-style:
+    italic;
+}
+
+
+@media (
+  max-width: 900px
+) {
+  .maloja-features {
+    grid-template-columns:
+      1fr;
+  }
+}
+
+
+@media (
+  max-width: 620px
+) {
+  .maloja-week-head {
+    align-items:
+      flex-start;
+
+    flex-direction:
+      column;
+
+    gap:
+      6px;
+  }
+}
+
+
+/* ============================================================
+   DAILY VOID FOOTER FLOW FIX
+   Footer belongs below Maloja, not over it.
+   ============================================================ */
+
+footer,
+.footer,
+#footer {
+  position: static !important;
+
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
+
+  width: 100% !important;
+
+  margin:
+    12px 0 0 !important;
+
+  transform: none !important;
+
+  z-index: auto !important;
+}
+
+
+/* Give the music strip a little breathing room. */
+.maloja-week {
+  margin-bottom: 0;
+}
+
+
+
+/* ============================================================
+   DAILY_VOID_MACHINE_STATS_V1
+   ============================================================ */
+
+.machine-stats-panel {
+  display: grid;
+
+  gap: 8px;
+
+  margin:
+    8px 12px 10px;
+}
+
+
+.machine-stats-host {
+  padding:
+    8px 9px;
+
+  border:
+    1px solid
+    rgba(220,235,255,.065);
+
+  border-radius:
+    9px;
+
+  background:
+    rgba(0,0,0,.13);
+}
+
+
+.machine-stats-name {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  margin-bottom:
+    7px;
+
+  color:
+    rgba(223,230,240,.78);
+
+  font-size:
+    .61rem;
+
+  font-weight:
+    850;
+
+  letter-spacing:
+    .105em;
+}
+
+
+.machine-stats-uptime {
+  color:
+    rgba(160,172,190,.53);
+
+  font-size:
+    .58rem;
+
+  font-weight:
+    650;
+
+  letter-spacing:
+    .02em;
+
+  text-transform:
+    none;
+}
+
+
+.machine-stats-row,
+.machine-gpu-row {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0,1fr)
+    );
+
+  gap:
+    5px;
+}
+
+
+.machine-gpu-row {
+  margin-top:
+    6px;
+
+  padding-top:
+    6px;
+
+  border-top:
+    1px solid
+    rgba(220,235,255,.055);
+}
+
+
+.machine-metric {
+  min-width: 0;
+}
+
+
+.machine-metric-label {
+  display: block;
+
+  margin-bottom:
+    1px;
+
+  color:
+    rgba(154,166,184,.50);
+
+  font-size:
+    .51rem;
+
+  font-weight:
+    800;
+
+  letter-spacing:
+    .08em;
+}
+
+
+.machine-metric-value {
+  display: block;
+
+  overflow: hidden;
+
+  color:
+    rgba(226,232,241,.88);
+
+  font-size:
+    .68rem;
+
+  font-weight:
+    650;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+.machine-stat-offline {
+  color:
+    #db9c9c;
+
+  font-size:
+    .56rem;
+}
+
+
+@media (max-width: 600px) {
+  .machine-stats-row,
+  .machine-gpu-row {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0,1fr)
+      );
+
+    row-gap:
+      7px;
+  }
+}
+
+
+/* ============================================================
+   MULTI-GPU SERVER STATS
+   ============================================================ */
+
+.machine-gpu-block {
+  margin-top: 7px;
+
+  padding-top: 7px;
+
+  border-top:
+    1px solid rgba(220,235,255,.055);
+}
+
+
+.machine-gpu-block
+.machine-gpu-row {
+  margin-top: 4px;
+  padding-top: 0;
+  border-top: 0;
+}
+
+
+.machine-gpu-name {
+  color:
+    rgba(174,185,202,.62);
+
+  font-size: .54rem;
+  font-weight: 800;
+
+  letter-spacing: .07em;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+

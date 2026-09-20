@@ -1,0 +1,38 @@
+# Secrets
+*.env
+!*.env.example
+gmail-client.json
+gmail-token.json
+*token*.json
+*credentials*.json
+client_secret*.json
+
+# Generated personal/runtime data
+calendar.json
+life_admin.json
+gmail-evidence.json
+machine_stats.json
+maloja.json
+feeds.json
+weather.json
+status.json
+
+# Local configuration
+config.json
+config.private.json
+
+# Python/runtime
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs
+logs/
+*.log
+*.tmp
+
+# Backups
+*.before-*
+*.bak
+*~
