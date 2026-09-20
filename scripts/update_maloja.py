@@ -2,6 +2,7 @@
 
 import html
 import json
+import os
 import re
 import urllib.request
 
@@ -11,12 +12,24 @@ from urllib.parse import urljoin
 from zoneinfo import ZoneInfo
 
 
-BASE = "https://music.example.com"
-OUTPUT = Path(
-    "/var/www/daily-void-private/maloja.json"
-)
+BASE = os.environ.get(
+    "MALOJA_URL",
+    "https://music.example.com",
+).rstrip("/")
 
-TZ = ZoneInfo("Europe/London")
+WEB_ROOT = Path(
+    os.environ.get(
+        "DAILY_VOID_WEB_ROOT",
+        "/var/www/daily-void",
+    )
+)
+OUTPUT = WEB_ROOT / "maloja.json"
+
+TZ_NAME = os.environ.get(
+    "DAILY_VOID_TIMEZONE",
+    "Europe/London",
+)
+TZ = ZoneInfo(TZ_NAME)
 
 HEADERS = {
     "User-Agent":
