@@ -3,6 +3,7 @@
 import base64
 import html
 import json
+import os
 import re
 
 from datetime import datetime, timedelta
@@ -21,26 +22,35 @@ from googleapiclient.discovery import build
 # CONFIG
 # ============================================================
 
-TZ = ZoneInfo("Europe/London")
+TZ_NAME = os.environ.get(
+    "DAILY_VOID_TIMEZONE",
+    "Europe/London",
+)
+TZ = ZoneInfo(TZ_NAME)
 
-TOKEN = (
-    Path.home()
-    / ".config/daily-void/gmail-token.json"
+TOKEN = Path(
+    os.environ.get(
+        "GMAIL_TOKEN_FILE",
+        str(Path.home() / ".config/daily-void/gmail-token.json"),
+    )
 )
 
-LOCAL_DIR = (
-    Path.home()
-    / ".local/share/daily-void"
+LOCAL_DIR = Path(
+    os.environ.get(
+        "DAILY_VOID_DATA_DIR",
+        str(Path.home() / ".local/share/daily-void"),
+    )
 )
 
-EVIDENCE_OUT = (
-    LOCAL_DIR
-    / "gmail-evidence.json"
-)
+EVIDENCE_OUT = LOCAL_DIR / "gmail-evidence.json"
 
-PUBLIC_OUT = Path(
-    "/var/www/daily-void-private/life_admin.json"
+WEB_ROOT = Path(
+    os.environ.get(
+        "DAILY_VOID_WEB_ROOT",
+        "/var/www/daily-void",
+    )
 )
+PUBLIC_OUT = WEB_ROOT / "life_admin.json"
 
 SCOPES = [
     "https://www.googleapis.com/auth/gmail.readonly"
@@ -1365,7 +1375,7 @@ def main():
                 TZ
             ).isoformat(),
         "timezone":
-            "Europe/London",
+            TZ_NAME,
         "items":
             public_items,
         "counts": {
