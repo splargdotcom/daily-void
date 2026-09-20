@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Homepage",
+    "kind": "http",
+    "check": "https://example.com/",
+    "link": "https://example.com/"
+  },
+  {
+    "name": "Remote server",
+    "kind": "tcp",
+    "host": "server2",
+    "port": 22,
+    "link": ""
+  },
+  {
+    "name": "Local service",
+    "kind": "http",
+    "check": "http://127.0.0.1:8080/",
+    "link": "http://server1:8080/"
+  }
+]
