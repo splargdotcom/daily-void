@@ -12,12 +12,23 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 
-OUTPUT = Path(
-    "/var/www/daily-void-private/machine_stats.json"
+WEB_ROOT = Path(
+    os.environ.get(
+        "DAILY_VOID_WEB_ROOT",
+        "/var/www/daily-void",
+    )
 )
+OUTPUT = WEB_ROOT / "machine_stats.json"
 
-TZ = ZoneInfo(
-    "Europe/London"
+TZ_NAME = os.environ.get(
+    "DAILY_VOID_TIMEZONE",
+    "Europe/London",
+)
+TZ = ZoneInfo(TZ_NAME)
+
+REMOTE_STATS_HOST = os.environ.get(
+    "REMOTE_STATS_HOST",
+    "server2",
 )
 
 
@@ -441,7 +452,7 @@ def server2_stats():
                 "BatchMode=yes",
                 "-o",
                 "ConnectTimeout=5",
-                "server2",
+                REMOTE_STATS_HOST,
                 REMOTE_SCRIPT,
             ],
             capture_output=True,
