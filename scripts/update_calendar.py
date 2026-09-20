@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import urllib.request
 
 from datetime import date, datetime, time, timedelta
@@ -11,16 +12,24 @@ from icalendar import Calendar
 import recurring_ical_events
 
 
-TZ = ZoneInfo("Europe/London")
+TZ_NAME = os.environ.get("DAILY_VOID_TIMEZONE", "Europe/London")
+TZ = ZoneInfo(TZ_NAME)
 
-ENV_FILE = (
-    Path.home()
-    / ".config/daily-void/calendar.env"
+ENV_FILE = Path(
+    os.environ.get(
+        "DAILY_VOID_CALENDAR_ENV",
+        str(Path.home() / ".config/daily-void/calendar.env"),
+    )
 )
 
-OUT = Path(
-    "/var/www/daily-void-private/calendar.json"
+WEB_ROOT = Path(
+    os.environ.get(
+        "DAILY_VOID_WEB_ROOT",
+        "/var/www/daily-void",
+    )
 )
+
+OUT = WEB_ROOT / "calendar.json"
 
 DAYS_AHEAD = 21
 
@@ -44,14 +53,17 @@ def load_urls():
         key, value = raw.split("=", 1)
 
         if (
-            key.startswith("CALENDAR_ICS_URL")
+            (
+                key.startswith("CALENDAR_ICS_URL")
+                or key.startswith("CALENDAR_ICAL_URL")
+            )
             and value.strip()
         ):
             urls.append(value.strip())
 
     if not urls:
         raise RuntimeError(
-            "No CALENDAR_ICS_URL found."
+            "No CALENDAR_ICS_URL / CALENDAR_ICAL_URL found."
         )
 
     return urls
@@ -252,7 +264,7 @@ def main():
         "generated_at":
             now.isoformat(),
         "timezone":
-            "Europe/London",
+            TZ_NAME,
         "range_days":
             DAYS_AHEAD,
         "events":
