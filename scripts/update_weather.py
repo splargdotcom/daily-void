@@ -3,7 +3,13 @@ import os
 import json, urllib.parse, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
-OUT=Path('/var/www/mywebsite/start/weather.json')
+WEB_ROOT = Path(
+    os.environ.get(
+        "DAILY_VOID_WEB_ROOT",
+        "/var/www/daily-void",
+    )
+)
+OUT = WEB_ROOT / "weather.json"
 LAT = float(
     os.environ.get(
         "WEATHER_LAT",
@@ -20,7 +26,14 @@ LON = float(
 
 TIMEZONE = os.environ.get(
     "WEATHER_TIMEZONE",
-    "Europe/London",
+    os.environ.get(
+        "DAILY_VOID_TIMEZONE",
+        "Europe/London",
+    ),
+)
+PLACE = os.environ.get(
+    "WEATHER_PLACE",
+    "Your City",
 )
 CODES={0:('Clear','☀️'),1:('Mainly clear','🌤'),2:('Partly cloudy','⛅'),3:('Overcast','☁️'),45:('Fog','🌫'),48:('Fog','🌫'),51:('Drizzle','🌦'),53:('Drizzle','🌦'),55:('Drizzle','🌧'),61:('Rain','🌧'),63:('Rain','🌧'),65:('Heavy rain','🌧'),71:('Snow','🌨'),73:('Snow','🌨'),75:('Heavy snow','🌨'),80:('Showers','🌦'),81:('Showers','🌧'),82:('Heavy showers','🌧'),95:('Thunderstorm','⛈')}
 def main():
@@ -29,6 +42,6 @@ def main():
  c=d['current'];cond,icon=CODES.get(c['weather_code'],('Weather','⛅'));daily=[]
  for day,code,hi,lo in zip(d['daily']['time'],d['daily']['weather_code'],d['daily']['temperature_2m_max'],d['daily']['temperature_2m_min']):
   daily.append({'day':datetime.fromisoformat(day).strftime('%a'),'icon':CODES.get(code,('', '·'))[1],'high':round(hi),'low':round(lo)})
- out={'generated_at':datetime.now(timezone.utc).isoformat(),'place':'Your City, UK','temperature':round(c['temperature_2m']),'feels_like':round(c['apparent_temperature']),'humidity':round(c['relative_humidity_2m']),'wind':round(c['wind_speed_10m']),'condition':cond,'icon':icon,'daily':daily}
+ out={'generated_at':datetime.now(timezone.utc).isoformat(),'place':PLACE,'temperature':round(c['temperature_2m']),'feels_like':round(c['apparent_temperature']),'humidity':round(c['relative_humidity_2m']),'wind':round(c['wind_speed_10m']),'condition':cond,'icon':icon,'daily':daily}
  OUT.parent.mkdir(parents=True,exist_ok=True);tmp=OUT.with_suffix('.tmp');tmp.write_text(json.dumps(out,indent=2),encoding='utf-8');tmp.replace(OUT);print('Wrote',OUT)
 if __name__=='__main__':main()
