@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import json
+import os
 import socket
 import time
 import urllib.request
@@ -8,9 +9,15 @@ import urllib.error
 from datetime import datetime, timezone
 from pathlib import Path
 
-OUTPUT = Path("/var/www/mywebsite/start/status.json")
+WEB_ROOT = Path(
+    os.environ.get(
+        "DAILY_VOID_WEB_ROOT",
+        "/var/www/daily-void",
+    )
+)
+OUTPUT = WEB_ROOT / "status.json"
 
-SERVICES = [
+DEFAULT_SERVICES = [
     {
         "name": "splarg.com",
         "kind": "http",
@@ -73,6 +80,29 @@ SERVICES = [
         "link": "/",
     },
 ]
+
+def load_services():
+    config_path = os.environ.get(
+        "DAILY_VOID_STATUS_CONFIG",
+        "",
+    ).strip()
+
+    if not config_path:
+        return DEFAULT_SERVICES
+
+    path = Path(config_path)
+
+    data = json.loads(
+        path.read_text(encoding="utf-8")
+    )
+
+    if not isinstance(data, list):
+        raise ValueError(
+            "Status config must be a JSON array."
+        )
+
+    return data
+
 
 HEADERS = {
     "User-Agent": "DailyVoid/2.0",
@@ -253,7 +283,7 @@ def main():
         "services": [],
     }
 
-    for service in SERVICES:
+    for service in load_services():
         row = check_service(service)
         output["services"].append(row)
 
