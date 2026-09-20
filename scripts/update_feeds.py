@@ -2,6 +2,7 @@
 
 import email.utils
 import json
+import os
 import re
 import time
 import urllib.request
@@ -12,7 +13,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 
-OUT = Path("/var/www/mywebsite/start/feeds.json")
+WEB_ROOT = Path(
+    os.environ.get(
+        "DAILY_VOID_WEB_ROOT",
+        "/var/www/daily-void",
+    )
+)
+OUT = WEB_ROOT / "feeds.json"
 
 USER_AGENT = (
     "DailyVoid/2.1 "
